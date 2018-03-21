@@ -8,11 +8,17 @@ public class Sequential_Sum {
         int[] array = initalizeArray(N);
         int sum = 0;
 
-        for (int i = 0; i < N; i++) {
-            sum += array[i];
-        }
+        sum = sum(array);
 
         System.out.println(sum);
+    }
+
+    public static int sum(int[] data){
+        int sum = 0;
+        for (int i = 0; i < data.length; i++) {
+            sum += data[i];
+        }
+        return sum;
     }
 
 
