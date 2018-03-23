@@ -6,11 +6,10 @@ import java.util.stream.Collectors;
 public class ParallelStream_Sum {
 
     public static void main(String[] args) {
-        List random
-                = Collections.unmodifiableList(
+        List random = Collections.unmodifiableList(
                 new Random()
                         .ints(0, 2000)
-                        .limit(2500)
+                        .limit(250000)
                         .boxed()
                         .collect(Collectors.toList())
         );
