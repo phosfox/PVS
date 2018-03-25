@@ -8,7 +8,7 @@ import java.util.concurrent.Future;
 
 public class ExecutorService_Sum {
     public static void main(String[] args) throws Exception {
-        int N = 100000000;
+        int N = 1000000;
         int P = 100;
         int piece = N / P;
         int[] data = Sequential_Sum.initalizeArray(N);
