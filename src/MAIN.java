@@ -1,4 +1,7 @@
+import Timing.StopWatch;
+
 import java.util.Random;
+import Timing.StopWatch;
 
 public class MAIN{
     public static void main(String[] args) throws Exception{
@@ -6,9 +9,10 @@ public class MAIN{
         int length = data.length;
         int half = length/2;
         int max;
-
+        StopWatch sw = new StopWatch();
         MyThread t1 = new MyThread(data, 0,half);
         MyThread t2 = new MyThread(data, half, length);
+        sw.start();
 
         t1.start();
         t2.start();
@@ -19,6 +23,8 @@ public class MAIN{
 
         System.out.println("Maxwert ist: " +max);
         System.out.println(Runtime.getRuntime().availableProcessors()); //Anzahl Kerne
+        sw.stop();
+        System.out.println("Time in : " + sw.getTime() + "ns");
     }
 
     static int[] initalizeArray(){
