@@ -17,5 +17,6 @@ public class ParallelStream_Sum {
         random.stream().forEach(System.out::println);
         Object collect = random.parallelStream().collect(Collectors.summingInt(Integer::intValue));
         System.out.println(collect);
+
     }
 }
