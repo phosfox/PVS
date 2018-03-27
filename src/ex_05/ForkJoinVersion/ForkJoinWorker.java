@@ -28,7 +28,7 @@ public class ForkJoinWorker {
 
             if(end - start < 10000 ){
                 int sum = 0;
-                for (int i = start + 1; i <= end ; i++) {
+                for (int i = start ; i <= end ; i++) {
                     sum += array[i];
                 }
                 return sum;
@@ -37,11 +37,11 @@ public class ForkJoinWorker {
             SumTask leftTask = new SumTask(array, start, middle);
             leftTask.fork();
 
-            SumTask rightTask = new SumTask(array, middle+1, end);
+            SumTask rightTask = new SumTask(array, middle + 1, end);
             int rightSum = rightTask.compute();
             int leftSum = leftTask.join();
 
-            return rightSum + leftSum;
+            return (rightSum + leftSum);
         }
     }
 }
