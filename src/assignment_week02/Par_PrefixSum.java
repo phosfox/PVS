@@ -8,7 +8,7 @@ public class Par_PrefixSum {
 
 
     public static int[] getPrefixSum(int[] array){
-        return fjPool.invoke(new PrefixSumTask(array, 0, array.length));
+        return fjPool.invoke(new PrefixSumTask(array, 0, array.length -1));
     }
 
     private static class PrefixSumTask extends RecursiveTask<int[]> {
@@ -47,7 +47,7 @@ public class Par_PrefixSum {
             int[] rightArray = rightTask.compute();
             int[] leftArray = leftTask.join();
 
-            int[] combinedArray = new int[leftArray.length + rightArray.length];
+            int[] combinedArray = new int[array.length];
             int rightArrayCounter = 0;
             int leftArrayEndNumber = leftArray.length-1;
             for (int i = 0; i < combinedArray.length; i++) {
@@ -63,7 +63,7 @@ public class Par_PrefixSum {
         }
 
         private boolean problemIsSmallEnough(){
-            return end - start < 10000;
+            return end - start < 100000;
         }
     }
 }

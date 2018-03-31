@@ -26,7 +26,7 @@ public class Sequential_Sum {
         Random r = new Random();
         int[] array = new int[N];
         for (int i = 0; i < array.length; i++) {
-            array[i] = r.nextInt(20000);
+            array[i] = r.nextInt(10);
         }
         return array;
     }

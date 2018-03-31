@@ -18,7 +18,7 @@ public class MaxWorker implements Callable<Integer> {
         return sum(this.data, this.start, this.end);
     }
 
-    public int sum(int data[], int start, int end){
+    private int sum(int data[], int start, int end){
         int sum = 0;
         for (int i = start; i < end; i++) {
             sum += data[i];

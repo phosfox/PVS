@@ -1,43 +1,41 @@
 package assignment_week02;
 
 
+import Timing.StopWatch;
 import ex_05.Sequential_Sum;
 
-public class Main {
-    public static void main(String[] args){
-        int array[] = {5,7,8,1};
-        int array2[] = Sequential_Sum.initalizeArray(40000);
-        System.out.print("\nArray:");
-        System.out.println(array2[array2.length-1]);
+import java.util.Arrays;
+import java.util.concurrent.ExecutionException;
 
-        /*for (int i : array ){
-            System.out.print("[" + i + "]");
-        }*/
+public class Main {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        int array[] = {5,7,8,1};
+        int array2[] = Sequential_Sum.initalizeArray(100000000);
+        //System.out.print("\nArray :" +Arrays.toString(array2));
+        System.out.println();
+        System.out.println();
+
 
         Seq_PrefixSum sq = new Seq_PrefixSum(array2, 0 , array.length - 1);
+        long start = System.nanoTime();
         int[] arrayDone = sq.getPrefixSum();
-        System.out.print("\nSequentiell:");
-        System.out.println(arrayDone[0]);
-        System.out.println(arrayDone[arrayDone.length-1]);
-        /*for (int i : arrayDone) {
-            System.out.print("[" + i + "]");
-        }*/
-        /*
-        System.out.print("\nArray:");
-        for (int i : array ){
-            System.out.print("[" + i + "]");
-        }*/
+        long stop = System.nanoTime();
 
-        int[] arrayDone2 = Par_PrefixSum.getPrefixSum(array2);
-        System.out.print("\nParallel:");
-        System.out.println(arrayDone2[0]);
-        System.out.println(arrayDone2[arrayDone2.length-1]);
-        /*for (int i : arrayDone2) {
-            System.out.print("[" + i + "]");
-        }*/
+        System.out.print("\nSequentiell Last Item:" + arrayDone[arrayDone.length - 1]);
+        System.out.println();
+        System.out.println(stop - start+ "ns");
 
-        int diff = arrayDone2[arrayDone2.length-1] - arrayDone[arrayDone.length-1];
-        System.out.println("\nDiff:"+diff);
+        System.out.println();
+        System.out.println();
+
+        long start2 = System.nanoTime();
+        Exec_PrefixSum exsum = new Exec_PrefixSum(array2);
+        long stop2 = System.nanoTime();
+        exsum.printData();
+        System.out.println();
+        System.out.println(stop2 - start2 + "ns");
+
+
 
     }
 }
