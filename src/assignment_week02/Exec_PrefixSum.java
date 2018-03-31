@@ -6,7 +6,7 @@ import java.util.concurrent.*;
 
 public class Exec_PrefixSum {
     private int CPUCOUNT = Runtime.getRuntime().availableProcessors();
-    private int N = 100000000,P = 10000000;
+    private int N = 10,P = 1;
     private int piece = N / P;
     private int[] data;
     private ExecutorService exes = Executors.newFixedThreadPool(CPUCOUNT);
@@ -42,8 +42,11 @@ public class Exec_PrefixSum {
     }
 
     private void addLastToFields() {
-        int EndIntOfPiece = data[piece - 1];
+        int EndIntOfPiece = 0;
         for (int i = piece; i < this.data.length; i++) {
+            if(i % piece == 0){
+                EndIntOfPiece += data[i - 1];
+            }
             data[i] += EndIntOfPiece;
         }
         /*for (int i = 1; i < piece; i++) {

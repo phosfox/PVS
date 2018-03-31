@@ -15,6 +15,7 @@ public class PrefixWorker implements Callable<int[]> {
 
     @Override
     public int[] call() {
+        //System.out.println("Called");
         for (int i = start + 1; i <= end; i++) {
             data[i] += data[i - 1];
         }
