@@ -14,7 +14,7 @@ public class Main {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         int array[] = {5,7,8,1};
         int array2[] = initArray(10);
-        int[] array2Unchanged = array2;
+        int[] array2Unchanged = Arrays.copyOf(array2,array2.length);
 
         Arrays.stream(array2).forEach(e -> System.out.print("[" +e+ "]"));
         //System.out.print("\nArray :" +Arrays.toString(array2));
@@ -22,7 +22,7 @@ public class Main {
         System.out.println();
 
 
-        Seq_PrefixSum sq = new Seq_PrefixSum(array, 0 , array.length - 1);
+        Seq_PrefixSum sq = new Seq_PrefixSum(array2, 0 , array2.length - 1);
         long start = System.nanoTime();
         int[] arrayDone = sq.getPrefixSum();
         long stop = System.nanoTime();
@@ -43,8 +43,8 @@ public class Main {
 
         System.out.println();
         System.out.println();
-        System.out.println("ParallelStream Prefix");
 
+        System.out.println("ParallelStream Prefix");
         IntBinaryOperator op = (x,y) -> x + y;
         Arrays.parallelPrefix(array2Unchanged, op);
         Arrays.stream(array2Unchanged).forEach(e -> System.out.print(e + " "));
